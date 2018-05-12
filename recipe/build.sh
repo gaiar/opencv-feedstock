@@ -51,8 +51,8 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig
 
 # Custom libjpeg-turbo location
 LIBJPEG_TURBO_DIR=${PREFIX}/lib/libjpeg-turbo/prefixed
-export CFLAGS="-mcpu=cortex-a7 -mfpu=neon-vfpv4 -ftree-vectorize -mfloat-abi=hard" # Notice here does not have -fPIC and -O3
-export CXXFLAGS="-mcpu=cortex-a7 -mfpu=neon-vfpv4 -ftree-vectorize -mfloat-abi=hard"
+export CFLAGS="-march=native -mtune=native"
+export CXXFLAGS="-march=native -mtune=native"
 
 cmake -LAH                                                                \
     -DCMAKE_RULE_MESSAGES=ON                                              \
@@ -63,8 +63,8 @@ cmake -LAH                                                                \
     -DCMAKE_PREFIX_PATH=${PREFIX}                                         \
     -DCMAKE_INSTALL_LIBDIR=${PREFIX}/lib                                  \
     -DENABLE_CXX11=ON                                                     \
-    -D ENABLE_NEON=ON                                                     \
-    -D ENABLE_VFPV3=ON                                                    \
+    -DENABLE_NEON=ON                                                     \
+    -DENABLE_VFPV3=ON                                                    \
     ${OPENMP}                                                             \
     -DBUILD_opencv_dnn=ON                                                 \
     -DBUILD_SHARED_LIBS=ON                                                \
